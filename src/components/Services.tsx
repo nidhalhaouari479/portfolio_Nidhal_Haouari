@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion';
-import { Code2, Cpu, Database, Layout, ShieldCheck, TerminalSquare } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Cpu, Database, Layout, ShieldCheck, TerminalSquare } from 'lucide-react';
 
 export default function Skills() {
-    const { t } = useTranslation();
 
     const skillCategories = [
         {
