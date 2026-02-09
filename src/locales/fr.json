@@ -1,0 +1,78 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "projects": "Projets",
+        "services": "Services",
+        "certifications": "Certifications",
+        "contact": "Contact"
+    },
+    "hero": {
+        "greeting": "Bonjour, je suis",
+        "name": "Nidhal Haouari",
+        "role": "Développeur Full-Stack & Freelance",
+        "description": "Diplômé en informatique, passionné par le développement logiciel, les tests et l'IA. Motivé et soucieux du détail, prêt à contribuer à des solutions innovantes.",
+        "viewProjects": "Voir les Projets",
+        "contact": "Me Contacter",
+        "downloadCV": "Télécharger CV"
+    },
+    "about": {
+        "title": "À Propos de Moi",
+        "intro": "Je suis un développeur Full-Stack et Freelance basé en Tunisie, passionné par la création de solutions logicielles innovantes. Avec une expertise couvrant le développement web, l'IA et les systèmes de données, je donne vie aux idées grâce à un code propre et des technologies modernes.",
+        "skillsTitle": "Compétences Techniques",
+        "frameworksTitle": "Frameworks & Bibliothèques",
+        "toolsTitle": "Outils & Méthodes",
+        "osTitle": "Systèmes d'Exploitation",
+        "languagesTitle": "Langues",
+        "experienceTitle": "Expérience Professionnelle"
+    },
+    "projects": {
+        "title": "Projets",
+        "type": {
+            "academic": "Académique",
+            "freelance": "Freelance",
+            "personal": "Personnel"
+        },
+        "client": "Client",
+        "year": "Année",
+        "noMedia": "Aucun média disponible"
+    },
+    "services": {
+        "title": "Services",
+        "items": {
+            "web": {
+                "title": "Développement Web",
+                "desc": "Sites web et applications sur mesure construits avec des technologies modernes comme React, Next.js et Angular."
+            },
+            "ai": {
+                "title": "IA & Chatbots",
+                "desc": "Solutions intelligentes utilisant TensorFlow, PyTorch et LangChain pour l'automatisation et les insights."
+            },
+            "data": {
+                "title": "Données & Automatisation",
+                "desc": "Traitement de données, analyse et automatisation des workflows avec Python, Spark et Hadoop."
+            },
+            "api": {
+                "title": "API & Systèmes Backend",
+                "desc": "Conception et implémentation d'API robustes et sécurisées avec Node.js, Flask et Django."
+            }
+        }
+    },
+    "certifications": {
+        "title": "Certifications",
+        "issuedBy": "Délivré par"
+    },
+    "contact": {
+        "title": "Contactez-moi",
+        "subtitle": "Travaillons ensemble sur votre prochain projet",
+        "name": "Nom",
+        "email": "Email",
+        "message": "Message",
+        "send": "Envoyer le message",
+        "success": "Message envoyé avec succès !",
+        "error": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "footer": {
+        "copyright": "© 2026 Nidhal Haouari. Tous droits réservés."
+    }
+}

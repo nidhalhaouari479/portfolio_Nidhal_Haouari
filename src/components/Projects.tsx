@@ -1,0 +1,320 @@
+import { motion } from 'framer-motion';
+import { ExternalLink, Github, Calendar, User } from 'lucide-react';
+
+interface Project {
+    title: string;
+    description: string;
+    technologies: string[];
+    client: string;
+    date: string;
+    type: 'academic' | 'freelance' | 'personal';
+    mediaType: 'video' | 'image';
+    mediaUrl: string;
+    liveUrl?: string;
+    githubUrl?: string;
+    thumbnailUrl?: string;
+}
+
+const projects: Project[] = [
+    {
+        title: '✨ Glow-Bio-Builder Platform',
+        description: 'A web application developed in 2026 for building personalized bios and profiles. Built with Next.js and Supabase, the platform features fast real-time interactions, user authentication, and smooth UI flows.',
+        technologies: ['Next.js', 'Supabase'],
+        client: 'Glow-Bio-Builder',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/76D2xfHtiR0',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+        title: '📱 GSM Guide Platform',
+        description: 'A platform dedicated to mobile phones where I worked on SEO optimization and digital performance. The project focuses on improving search engine visibility, user tracking, and e-commerce performance.',
+        technologies: ['WordPress', 'WooCommerce', 'SEO Tools', 'Google Analytics'],
+        client: 'GSM Guide',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/CJMLoTGz6C0',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/gsm-guide',
+        liveUrl: 'https://gsm-guide.example.com',
+    },
+    {
+        title: '💻 Platform for DWE Creation',
+        description: 'Web platform for DWE Creation, built with Next.js. Includes email functionalities and database integration.',
+        technologies: ['Next.js', 'Supabase', 'NodeMailer'],
+        client: 'DWE Creation',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/JONcHnlt8EE',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/dwe-creation',
+        liveUrl: 'https://dwecreation.com',
+    },
+    {
+        title: '⚽ Intelligent Football Analysis System with AI',
+        description: 'Automated AI system for analyzing football matches in real time, detecting players, tracking the ball, differentiating teams, and generating tactical stats.',
+        technologies: ['Python', 'OpenCV', 'YOLOv8', 'Roboflow'],
+        client: 'AI Sports Analytics',
+        date: '2025',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/kH5mNPT8F2k',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/football-analysis',
+        liveUrl: 'https://football-ai.example.com',
+    },
+    {
+        title: '🏗️ Website for Jomana Travaux',
+        description: 'Professional website for Jomana Travaux construction company, built to showcase services and projects.',
+        technologies: ['React', 'Next.js', 'Tailwind'],
+        client: 'Jomana Travaux',
+        date: '2025',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/lVmIu-pFxLc',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/jomana-travaux',
+        liveUrl: 'https://jomanatravaux.com',
+    },
+    {
+        title: '🌐 Website for Tuniscaling Agency',
+        description: 'Professional website for Tuniscaling agency, built with React. Includes contact functionality using NodeMailer.',
+        technologies: ['React', 'NodeMailer', 'Vercel'],
+        client: 'Tuniscaling',
+        date: '2025',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/npw9SSwaV-0',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/tuniscaling',
+        liveUrl: 'https://tuniscaling.com',
+    },
+    {
+        title: '🤖 AI Assistant for Izoguern',
+        description: 'AI-powered assistant for Izoguern, built with LangChain, RAG, and Prompt Engineering. Integrated with PostgreSQL and Gemini.',
+        technologies: ['LangChain', 'RAG', 'PostgreSQL', 'Gemini'],
+        client: 'Izoguern Co.',
+        date: '2025',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/e4VmV3wNbpg',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/izoguern-ai',
+        liveUrl: 'https://ai.izoguern.com',
+    },
+    {
+        title: '🛒 E-commerce Platform for Izoguern',
+        description: 'Full-featured e-commerce website for Izoguern, built with Next.js, Tailwind CSS, and Saleor. Optimized as a PWA with PostgreSQL backend.',
+        technologies: ['Next.js', 'Saleor', 'PostgreSQL'],
+        client: 'Izoguern Co.',
+        date: '2025',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/qCGgZe33gpk',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/izoguern-shop',
+        liveUrl: 'https://izoguern.com',
+    },
+    {
+        title: '✈️ Travel Agency Website',
+        description: 'Progressive Web Application for a travel agency based in Poland, built with React for a seamless user experience across all devices.',
+        technologies: ['React', 'PWA', 'Tailwind'],
+        client: 'GoTravel Poland',
+        date: '2024',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/7BSF-poCYBM',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/travel-agency',
+        liveUrl: 'https://travel-agency.example.com',
+    },
+    {
+        title: '📊 Dashboard Platform for Izoguern',
+        description: 'Professional web dashboard for Izoguern, featuring dynamic data visualizations to monitor business metrics and KPIs.',
+        technologies: ['React', 'Django', 'Chart.js'],
+        client: 'Izoguern Co.',
+        date: '2024',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/E_rFX8ueyOM',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/izoguern-dashboard',
+        liveUrl: 'https://dashboard.izoguern.com',
+    },
+    {
+        title: '🛍️ E-commerce Platform for Brand Sword',
+        description: 'Online store for Brand Sword, built with Shopify and Stripe for smooth payments and scalable e-commerce features.',
+        technologies: ['Shopify', 'Stripe'],
+        client: 'Brand Sword',
+        date: '2024',
+        type: 'freelance',
+        mediaType: 'image',
+        mediaUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/brand-sword',
+        liveUrl: 'https://brandsword.example.com',
+    },
+    {
+        title: '🏆 Fantasy Tunisia League',
+        description: 'An immersive fantasy football platform for the Tunisian league, featuring team management, league creation, and real-time player performance tracking.',
+        technologies: ['Angular', 'PHP', 'MySQL'],
+        client: 'Tunisian Football Federation',
+        date: '2023',
+        type: 'freelance',
+        mediaType: 'image',
+        mediaUrl: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/fantasy-tunisia',
+        liveUrl: 'https://fantasy.tunisia.example.com',
+    },
+    {
+        title: '🚀 My Digital',
+        description: 'A cutting-edge website for a digital marketing agency, featuring dynamic service showcases, client testimonials, and lead generation functionality.',
+        technologies: ['React', 'Tailwind', 'Framer Motion'],
+        client: 'My Digital',
+        date: '2023',
+        type: 'freelance',
+        mediaType: 'image',
+        mediaUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/example/my-digital',
+        liveUrl: 'https://mydigital.example.com',
+    },
+];
+
+export default function Projects() {
+    return (
+        <section id="projects" className="relative py-32 bg-slate-950 overflow-hidden">
+            {/* Background logic */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="section-container relative z-10">
+                <div className="text-center mb-20 space-y-4">
+                    <motion.h2
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-7xl font-black text-white tracking-tighter"
+                    >
+                        Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">Stories</span>
+                    </motion.h2>
+                    <p className="text-slate-400 text-lg max-w-2xl mx-auto font-light">
+                        A curated selection of my most demanding and rewarding digital products.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {projects.map((project, index) => (
+                        <ProjectCard key={index} project={project} index={index} />
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function ProjectCard({ project, index }: { project: Project, index: number }) {
+
+    // Extract video ID if it's a YouTube URL
+    const videoId = project.mediaUrl?.includes('youtu.be/')
+        ? project.mediaUrl.split('youtu.be/')[1]
+        : project.mediaUrl?.includes('v=')
+            ? project.mediaUrl.split('v=')[1]?.split('&')[0]
+            : '';
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            className="group relative flex flex-col h-full bg-slate-900/50 rounded-[32px] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10"
+        >
+            {/* Media Section */}
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-800">
+                {project.mediaType === 'video' && videoId ? (
+                    <div className="relative w-full h-full">
+                        <iframe
+                            className="absolute inset-0 w-full h-full object-cover scale-[1.35] pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
+                            title={project.title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            loading="lazy"
+                        ></iframe>
+                        {/* Interactive blocker to allow card hover/click instead of iframe interaction */}
+                        <div className="absolute inset-0 z-10"></div>
+                    </div>
+                ) : (
+                    <img
+                        src={project.mediaUrl}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                )}
+
+                {/* Overlay Text */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none z-20">
+                    <div className="absolute bottom-6 left-6 right-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="space-y-1"
+                        >
+                            <div className="flex items-center gap-2 text-indigo-400">
+                                <User size={14} className="opacity-70" />
+                                <span className="text-[10px] font-black uppercase tracking-[0.3em]">{project.client}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-slate-400">
+                                <Calendar size={14} className="opacity-70" />
+                                <span className="text-xs font-bold uppercase tracking-widest">{project.date}</span>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Type Badge */}
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full glass border-white/10 text-[10px] font-bold text-white uppercase tracking-wider backdrop-blur-md z-30">
+                    {project.type}
+                </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="p-8 flex flex-col flex-1">
+                <h3 className="text-xl font-black text-white mb-3 leading-tight group-hover:text-indigo-400 transition-colors">
+                    {project.title}
+                </h3>
+                <p className="text-slate-400 text-sm font-light leading-relaxed mb-6 line-clamp-3">
+                    {project.description}
+                </p>
+
+                <div className="mt-auto pt-6 border-t border-white/5 space-y-6">
+                    <div className="flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 3).map((tech) => (
+                            <span key={tech} className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 py-1 bg-white/5 rounded-md">
+                                {tech}
+                            </span>
+                        ))}
+                        {project.technologies.length > 3 && (
+                            <span className="text-[10px] font-bold text-slate-600 uppercase tracking-widest px-2 py-1">+ {project.technologies.length - 3}</span>
+                        )}
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                        {project.liveUrl && (
+                            <a href={project.liveUrl} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold transition-all border border-white/5">
+                                Visit Site <ExternalLink size={14} />
+                            </a>
+                        )}
+                        {project.githubUrl && (
+                            <a href={project.githubUrl} className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 text-white transition-all border border-white/5">
+                                <Github size={20} />
+                            </a>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
