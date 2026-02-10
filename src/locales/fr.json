@@ -24,10 +24,81 @@
         "toolsTitle": "Outils & Méthodes",
         "osTitle": "Systèmes d'Exploitation",
         "languagesTitle": "Langues",
-        "experienceTitle": "Expérience Professionnelle"
+        "experienceTitle": "Expérience Professionnelle",
+        "workExperiences": [
+            {
+                "company": "GSM-Guide",
+                "role": "WebMaster",
+                "period": "Novembre 2025 – Janvier 2026",
+                "location": "Tunis",
+                "description": "Optimisation SEO et visibilité des sites web. Analyse du trafic sur le site avec Google Analytics. Web scraping et collecte de données web."
+            },
+            {
+                "company": "DWE",
+                "role": "Développeur Full Stack et Automatisation",
+                "period": "Juin 2025 – Septembre 2025",
+                "location": "Tunis",
+                "description": "Développement de sites web avec React et Supabase. Création d’assistants automatisés avec n8n."
+            },
+            {
+                "company": "Technozor",
+                "role": "Développeur full stack (Stage PFE)",
+                "period": "Janvier 2025 – Mai 2025",
+                "location": "Tunis",
+                "description": "Développement d'un site e-commerce avec dashboard professionnel et assistant IA. Backend avec Django, frontend avec Next.js. Intégration d’un assistant IA avec LangChain basé sur le RAG et prompt engineering. PostgreSQL pour la gestion de la base de données."
+            },
+            {
+                "company": "Neopolis",
+                "role": "Développeur full stack (Stage PFA)",
+                "period": "Juillet 2024 – Août 2024",
+                "location": "Nabeul",
+                "description": "Prétraitement et conversion de textes en PDF à l’aide d'un script. Backend avec Flask, frontend avec React. Site web responsive et optimisé en Progressive Web App (PWA). SQLlite pour la gestion de la base de données."
+            }
+        ],
+        "educationTitle": "Formation",
+        "education": [
+            {
+                "degree": "Licence en Sciences de l'Informatique (Génie Logiciel)",
+                "school": "ISTIC",
+                "period": "2022 - 2025",
+                "description": "Formation approfondie en architecture logicielle, bases de données et développement d'applications modernes."
+            },
+            {
+                "degree": "Baccalauréat en Sciences Techniques",
+                "school": "Lycée Taieb Mhiri Menzel Temime",
+                "period": "2022",
+                "description": "Base solide en mathématiques, physique et génie technique."
+            }
+        ],
+        "volunteeringTitle": "Vie Associative & Bénévolat",
+        "volunteering": [
+            {
+                "organization": "Scouts Tunisiens",
+                "role": "Membre / Chef Scout",
+                "period": "2014 - 2026",
+                "description": "Participation aux activités de leadership, camps et projets communautaires."
+            },
+            {
+                "organization": "ISTIC Event",
+                "role": "Organisateur",
+                "period": "2024",
+                "description": "Contribution à l'organisation et à la gestion des événements universitaires."
+            },
+            {
+                "organization": "Google Club",
+                "role": "Membre",
+                "period": "2023",
+                "description": "Participation à des ateliers technologiques et événements de formation."
+            }
+        ]
     },
     "projects": {
         "title": "Projets",
+        "subtitle": "Une sélection de mes produits numériques les plus exigeants et les plus gratifiants.",
+        "success": "Mes",
+        "stories": "Projets",
+        "other": "Autres",
+        "otherProjects": "Projets",
         "type": {
             "academic": "Académique",
             "freelance": "Freelance",

@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Calendar, User } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Github, Calendar, User, ArrowRight, X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 interface Project {
     title: string;
@@ -26,6 +28,8 @@ const projects: Project[] = [
         mediaType: 'video',
         mediaUrl: 'https://youtu.be/76D2xfHtiR0',
         thumbnailUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/nidhalhaouari479/Glow-Bio-Builder',
+        liveUrl: 'https://glow-bio-builder.vercel.app',
     },
     {
         title: '📱 GSM Guide Platform',
@@ -185,6 +189,12 @@ const projects: Project[] = [
 ];
 
 export default function Projects() {
+    const { t } = useTranslation();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const mainProjects = projects.slice(0, 6);
+    const otherProjects = projects.slice(6);
+
     return (
         <section id="projects" className="relative py-32 bg-slate-950 overflow-hidden">
             {/* Background logic */}
@@ -198,20 +208,91 @@ export default function Projects() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-7xl font-black text-white tracking-tighter"
                     >
-                        Success <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">Stories</span>
+                        {t('projects.success')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">{t('projects.stories')}</span>
                     </motion.h2>
                     <p className="text-slate-400 text-lg max-w-2xl mx-auto font-light">
-                        A curated selection of my most demanding and rewarding digital products.
+                        {t('projects.subtitle')}
                     </p>
                 </div>
 
+                {/* Featured Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {projects.map((project, index) => (
+                    {mainProjects.map((project, index) => (
                         <ProjectCard key={index} project={project} index={index} />
                     ))}
                 </div>
+
+                {/* View More Button */}
+                <div className="mt-20 flex justify-center">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setIsModalOpen(true)}
+                        className="group flex items-center gap-4 px-10 py-5 rounded-full bg-indigo-600 text-white font-black text-xl hover:bg-indigo-500 transition-all shadow-xl shadow-indigo-600/20"
+                    >
+                        {t('projects.other')} {t('projects.otherProjects')}
+                        <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
+                    </motion.button>
+                </div>
+
+                {/* Modal for Other Projects */}
+                <AnimatePresence>
+                    {isModalOpen && (
+                        <OtherProjectsModal
+                            projects={otherProjects}
+                            onClose={() => setIsModalOpen(false)}
+                        />
+                    )}
+                </AnimatePresence>
             </div>
         </section>
+    );
+}
+
+function OtherProjectsModal({ projects, onClose }: { projects: Project[], onClose: () => void }) {
+    const { t } = useTranslation();
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-slate-950/90 backdrop-blur-xl"
+        >
+            <motion.div
+                initial={{ scale: 0.9, y: 50, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.9, y: 50, opacity: 0 }}
+                className="relative w-full max-w-7xl h-full max-h-[90vh] bg-slate-900 rounded-[40px] border border-white/10 overflow-hidden flex flex-col shadow-2xl shadow-indigo-500/20"
+            >
+                {/* Header */}
+                <div className="sticky top-0 z-10 p-8 flex items-center justify-between bg-slate-900/50 backdrop-blur-md border-b border-white/5">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center">
+                            <ArrowRight className="text-white" />
+                        </div>
+                        <h2 className="text-3xl font-black text-white uppercase tracking-tight">
+                            {t('projects.other')} <span className="text-indigo-400">{t('projects.otherProjects')}</span>
+                        </h2>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white transition-colors"
+                    >
+                        <X size={24} />
+                    </button>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {projects.map((project, index) => (
+                            <ProjectCard key={index} project={project} index={index + 6} />
+                        ))}
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
     );
 }
 

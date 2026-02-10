@@ -72,7 +72,7 @@ export default function Certifications() {
             date: '2025',
             link: '/certificates/SEO.jpg',
             image: '/certificates/SEO.jpg',
-            logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/HubSpot_Logo.png/1200px-HubSpot_Logo.png',
+            logo: 'https://coursera-university-assets.s3.amazonaws.com/05/117872e09a4e38b60b74ca4290ab0e/HubSpot-Academy-Logo-1-.png',
             color: 'from-orange-400 to-red-400'
         },
         {

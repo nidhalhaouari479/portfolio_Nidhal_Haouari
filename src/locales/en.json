@@ -24,10 +24,81 @@
         "toolsTitle": "Tools & Methods",
         "osTitle": "Operating Systems",
         "languagesTitle": "Languages",
-        "experienceTitle": "Professional Experience"
+        "experienceTitle": "Professional Experience",
+        "workExperiences": [
+            {
+                "company": "GSM-Guide",
+                "role": "WebMaster",
+                "period": "Nov 2025 – Jan 2026",
+                "location": "Tunis",
+                "description": "SEO optimization and website visibility. Site traffic analysis with Google Analytics. Web scraping and data collection."
+            },
+            {
+                "company": "DWE",
+                "role": "Full Stack & Automation Developer",
+                "period": "Jun 2025 – Sep 2025",
+                "location": "Tunis",
+                "description": "Web development with React and Supabase. Creating automated assistants with n8n."
+            },
+            {
+                "company": "Technozor",
+                "role": "Full Stack Developer (PFE Intern)",
+                "period": "Jan 2025 – May 2025",
+                "location": "Tunis",
+                "description": "Developed an e-commerce site with a professional dashboard and AI assistant. Backend with Django, frontend with Next.js. Integrated AI assistant with LangChain (RAG & Prompt Engineering). PostgreSQL for database management."
+            },
+            {
+                "company": "Neopolis",
+                "role": "Full Stack Developer (PFA Intern)",
+                "period": "Jul 2024 – Aug 2024",
+                "location": "Nabeul",
+                "description": "Text preprocessing and PDF conversion script. Backend with Flask, frontend with React. Responsive site optimized as a Progressive Web App (PWA). SQLite for database management."
+            }
+        ],
+        "educationTitle": "Education",
+        "education": [
+            {
+                "degree": "Bachelor's degree in Computer Science (Software Engineering)",
+                "school": "ISTIC",
+                "period": "2022 - 2025",
+                "description": "Focusing on software architecture, design patterns, and modern development paradigms."
+            },
+            {
+                "degree": "Baccalaureate in Technical Sciences",
+                "school": "Lycée Taieb Mhiri Menzel Temime",
+                "period": "2022",
+                "description": "Solid foundation in mathematics, physics, and technical engineering."
+            }
+        ],
+        "volunteeringTitle": "Associative Life & Volunteering",
+        "volunteering": [
+            {
+                "organization": "Scout Tunisienne",
+                "role": "Scout Member / Leader",
+                "period": "2014 - 2026",
+                "description": "Participation in leadership activities, camps, and community projects."
+            },
+            {
+                "organization": "ISTIC Event",
+                "role": "Organizer",
+                "period": "2024",
+                "description": "Contribution to the organization and management of university events."
+            },
+            {
+                "organization": "Google Club",
+                "role": "Member",
+                "period": "2023",
+                "description": "Participation in technology workshops and training events."
+            }
+        ]
     },
     "projects": {
         "title": "Projects",
+        "subtitle": "A curated selection of my most demanding and rewarding digital products.",
+        "success": "Success",
+        "stories": "Stories",
+        "other": "Other",
+        "otherProjects": "Projects",
         "type": {
             "academic": "Academic",
             "freelance": "Freelance",

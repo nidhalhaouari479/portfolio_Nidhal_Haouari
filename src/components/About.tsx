@@ -1,40 +1,11 @@
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, Award } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, Award, GraduationCap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export default function About() {
     const { t } = useTranslation();
 
-    const experiences = [
-        {
-            company: 'GSM-Guide',
-            role: 'Full-Stack Developer',
-            period: '2024',
-            location: 'Remote',
-            description: 'Engaged in developing robust full-stack applications, focusing on scalable architectures and modern web technologies to deliver high-quality digital products.'
-        },
-        {
-            company: 'DWE',
-            role: 'Freelance Developer',
-            period: '2024',
-            location: 'International',
-            description: 'Collaborated with diverse clients to build custom software solutions, ranging from interactive web platforms to automated backend systems.'
-        },
-        {
-            company: 'Technozor',
-            role: 'PFE Intern',
-            period: '2024',
-            location: 'Tunis',
-            description: 'Spearheaded the development of a core project for my final year, integrating advanced AI models and ensuring seamless user experiences.'
-        },
-        {
-            company: 'Neopolis',
-            role: 'PFA Intern',
-            period: '2023',
-            location: 'Tunis',
-            description: 'Contributed to architectural design and frontend implementation of enterprise-level applications during my academic internship.'
-        }
-    ];
+
 
     return (
         <section id="about" className="relative py-32 bg-slate-950 overflow-hidden">
@@ -82,7 +53,7 @@ export default function About() {
                                 <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">Technologies</p>
                             </div>
                             <div className="space-y-2">
-                                <h4 className="text-4xl font-black text-white">5+</h4>
+                                <h4 className="text-4xl font-black text-white">9+</h4>
                                 <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">Certifications</p>
                             </div>
                         </motion.div>
@@ -138,9 +109,9 @@ export default function About() {
                                 {/* Vertical Line */}
                                 <div className="absolute left-0 lg:left-0 top-2 bottom-2 w-[1px] bg-gradient-to-b from-indigo-600 via-purple-600 to-transparent"></div>
 
-                                {experiences.map((exp, index) => (
+                                {(t('about.workExperiences', { returnObjects: true }) as any[]).map((exp, index) => (
                                     <motion.div
-                                        key={exp.company}
+                                        key={index}
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
@@ -180,39 +151,69 @@ export default function About() {
                             </div>
                         </div>
 
+                        {/* Education Section */}
+                        <div>
+                            <h3 className="text-2xl font-bold text-white mb-12 flex items-center gap-4">
+                                <GraduationCap className="text-pink-500" />
+                                {t('about.educationTitle')}
+                            </h3>
+
+                            <div className="relative space-y-12">
+                                {/* Vertical Line */}
+                                <div className="absolute left-0 lg:left-0 top-2 bottom-2 w-[1px] bg-gradient-to-b from-pink-600 via-purple-600 to-transparent"></div>
+
+                                {(t('about.education', { returnObjects: true }) as any[]).map((edu, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.1, duration: 0.8 }}
+                                        className="relative pl-10"
+                                    >
+                                        {/* Dot */}
+                                        <div className="absolute left-[-5px] top-2 w-[11px] h-[11px] rounded-full bg-slate-950 border-2 border-pink-500 z-10"></div>
+
+                                        <div className="glass p-8 rounded-2xl hover:bg-white/10 transition-colors group">
+                                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                                <div className="space-y-1">
+                                                    <h4 className="text-2xl font-black text-white group-hover:text-pink-400 transition-colors">
+                                                        {edu.degree}
+                                                    </h4>
+                                                    <p className="text-pink-400 font-bold text-sm uppercase tracking-wider">
+                                                        {edu.school}
+                                                    </p>
+                                                </div>
+                                                <div className="flex flex-col items-start md:items-end gap-2 text-slate-500 text-sm">
+                                                    <div className="flex items-center gap-2">
+                                                        <Calendar size={14} />
+                                                        {edu.period}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p className="text-slate-400 font-light leading-relaxed">
+                                                {edu.description}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+
                         {/* Volunteering Section */}
                         <div>
                             <h3 className="text-2xl font-bold text-white mb-12 flex items-center gap-4">
                                 <Award className="text-purple-500" />
-                                Associative Life & Volunteering
+                                {t('about.volunteeringTitle')}
                             </h3>
 
                             <div className="relative space-y-12">
                                 {/* Vertical Line */}
                                 <div className="absolute left-0 lg:left-0 top-2 bottom-2 w-[1px] bg-gradient-to-b from-purple-600 via-indigo-600 to-transparent"></div>
 
-                                {[
-                                    {
-                                        organization: 'Scout Tunisienne',
-                                        role: 'Scout Member / Leader',
-                                        period: '2014 - 2026',
-                                        description: 'Participation in leadership activities, camps, and community projects.'
-                                    },
-                                    {
-                                        organization: 'ISTIC Event',
-                                        role: 'Organizer',
-                                        period: '2024',
-                                        description: 'Contribution to the organization and management of university events.'
-                                    },
-                                    {
-                                        organization: 'Google Club',
-                                        role: 'Member',
-                                        period: '2023',
-                                        description: 'Participation in technology workshops and training events.'
-                                    }
-                                ].map((vol, index) => (
+                                {(t('about.volunteering', { returnObjects: true }) as any[]).map((vol, index) => (
                                     <motion.div
-                                        key={vol.organization}
+                                        key={index}
                                         initial={{ opacity: 0, x: 20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
