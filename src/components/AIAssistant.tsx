@@ -9,29 +9,7 @@ interface Message {
     timestamp: Date;
 }
 
-const KNOWLEDGE_BASE = {
-    skills: [
-        "React", "TypeScript", "Next.js", "Django", "Tailwind CSS",
-        "LangChain", "RAG", "Prompt Engineering", "PostgreSQL",
-        "Stripe", "GraphQL", "Python", "OpenCV", "YOLOv8", "Saleor"
-    ],
-    projects: [
-        {
-            name: "Glow-Bio-Builder Platform",
-            description: "A real-time platform for building personalized bios, built with Next.js and Supabase."
-        },
-        {
-            name: "AI Assistant for Izoguern",
-            description: "Advanced AI chatbot using LangChain and RAG for intelligent data retrieval."
-        },
-        {
-            name: "E-commerce Platform for Izoguern",
-            description: "Full-featured e-commerce solution using Next.js, Saleor, and GraphQL."
-        }
-    ],
-    experience: "Nidhal is a Full-Stack & AI Developer with 4+ years of experience. He specializes in building premium web applications and AI solutions with tools like Django, Stripe, and LangChain.",
-    contact: "You can reach Nidhal at nidhalhaouari57@gmail.com or via WhatsApp at +216 29 897 262. He is based in Tunisia and available for freelance worldwide."
-};
+const BACKEND_URL = "https://chatbotnidhal-latest.onrender.com/chat";
 
 const SUGGESTIONS = [
     "Tell me about your AI expertise",
@@ -52,6 +30,13 @@ export default function AIAssistant() {
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [sessionId] = useState(() => {
+        const saved = localStorage.getItem('chat_session_id');
+        if (saved) return saved;
+        const newId = crypto.randomUUID();
+        localStorage.setItem('chat_session_id', newId);
+        return newId;
+    });
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -63,7 +48,7 @@ export default function AIAssistant() {
     }, [messages, isTyping]);
 
     const handleSend = async (text: string) => {
-        if (!text.trim()) return;
+        if (!text.trim() || isTyping) return;
 
         const userMessage: Message = {
             id: Date.now().toString(),
@@ -76,44 +61,43 @@ export default function AIAssistant() {
         setInputValue('');
         setIsTyping(true);
 
-        // Simulate AI thinking
-        setTimeout(() => {
-            const botResponse = generateResponse(text);
+        try {
+            const response = await fetch(BACKEND_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: text,
+                    session_id: sessionId
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Backend response was not ok');
+            }
+
+            const data = await response.json();
+
             const botMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: botResponse,
+                text: data.response || "I'm sorry, I couldn't process that.",
                 sender: 'bot',
                 timestamp: new Date()
             };
             setMessages(prev => [...prev, botMessage]);
+        } catch (error) {
+            console.error('Error calling chatbot backend:', error);
+            const errorMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                text: "Désolé, j'ai du mal à me connecter à mon cerveau distant. Veuillez réessayer plus tard.",
+                sender: 'bot',
+                timestamp: new Date()
+            };
+            setMessages(prev => [...prev, errorMessage]);
+        } finally {
             setIsTyping(false);
-        }, 1000);
-    };
-
-    const generateResponse = (input: string): string => {
-        const query = input.toLowerCase();
-
-        if (query.includes('skill') || query.includes('tech') || query.includes('stack')) {
-            return `Nidhal specializes in ${KNOWLEDGE_BASE.skills.slice(0, 5).join(', ')}, and many more. He's an expert in building scalable full-stack applications with React and Next.js.`;
         }
-
-        if (query.includes('project') || query.includes('work') || query.includes('build')) {
-            return `He has worked on several high-impact projects like the ${KNOWLEDGE_BASE.projects[0].name} and ${KNOWLEDGE_BASE.projects[1].name}. His work focuses on performance and user experience.`;
-        }
-
-        if (query.includes('contact') || query.includes('email') || query.includes('reach') || query.includes('hire')) {
-            return KNOWLEDGE_BASE.contact;
-        }
-
-        if (query.includes('experience') || query.includes('background') || query.includes('years')) {
-            return KNOWLEDGE_BASE.experience;
-        }
-
-        if (query.includes('hello') || query.includes('hi') || query.includes('hey')) {
-            return "Hello! I can tell you all about Nidhal's technical expertise, his portfolio projects, or how to get in touch with him. What would you like to know?";
-        }
-
-        return "I'm not sure I understand that yet, but I can tell you about Nidhal's skills, projects, and contact information. Try asking 'What are your skills?'";
     };
 
     return (
