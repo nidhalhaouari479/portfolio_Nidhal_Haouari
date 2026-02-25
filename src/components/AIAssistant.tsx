@@ -78,10 +78,14 @@ export default function AIAssistant() {
             }
 
             const data = await response.json();
+            let botText = data.response || "I'm sorry, I couldn't process that.";
+
+            // Nettoyer la réponse: enlever les marqueurs de formatage comme ***
+            botText = botText.replace(/\*\*\*/g, '').replace(/\*\*/g, '*');
 
             const botMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: data.response || "I'm sorry, I couldn't process that.",
+                text: botText,
                 sender: 'bot',
                 timestamp: new Date()
             };
