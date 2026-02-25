@@ -80,8 +80,8 @@ export default function AIAssistant() {
             const data = await response.json();
             let botText = data.response || "I'm sorry, I couldn't process that.";
 
-            // Nettoyer la réponse: enlever les marqueurs de formatage comme ***
-            botText = botText.replace(/\*\*\*/g, '').replace(/\*\*/g, '*');
+            // Nettoyer la réponse: enlever tous les astérisques
+            botText = botText.replace(/\*/g, '');
 
             const botMessage: Message = {
                 id: (Date.now() + 1).toString(),
