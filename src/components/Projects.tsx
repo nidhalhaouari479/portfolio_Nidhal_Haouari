@@ -455,7 +455,6 @@ function OtherProjectsModal({ projects, onClose, onProjectClick }: { projects: P
 }
 
 function ProjectCard({ project, index, onClick }: { project: Project, index: number, onClick: () => void }) {
-    const { t } = useTranslation();
 
     // Extract video ID if it's a YouTube URL
     const videoId = project.mediaUrl?.includes('youtu.be/')
