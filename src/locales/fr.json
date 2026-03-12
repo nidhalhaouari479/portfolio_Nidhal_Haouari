@@ -106,7 +106,17 @@
         },
         "client": "Client",
         "year": "Année",
-        "noMedia": "Aucun média disponible"
+        "noMedia": "Aucun média disponible",
+        "list": {
+            "gsm_academy": {
+                "title": "🎓 GSM Guide Academy",
+                "description": "Une plateforme de gestion éducative complète développée avec Next.js et Supabase. Elle comprend la gestion des cours, le suivi des inscriptions des étudiants et un système de notification automatique par e-mail avec Nodemailer."
+            },
+            "erp_dashboard": {
+                "title": "📊 Tableau de Bord ERP Scolaire",
+                "description": "Un tableau de bord système ERP haute performance pour les écoles, développé avec Next.js et Supabase. Offre aux administrateurs des analyses en temps réel, des rapports financiers et des mesures de performance des élèves."
+            }
+        }
     },
     "services": {
         "title": "Services",

@@ -19,6 +19,32 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: '🎓 GSM Guide Academy',
+        description: 'A comprehensive educational management platform built with Next.js and Supabase. Features include course management, student enrollment tracking, and an automated email notification system using Nodemailer.',
+        technologies: ['Next.js', 'Supabase', 'Nodemailer', 'Tailwind CSS'],
+        client: 'GSM Guide Academy',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/o1QoxKDEMT0',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/nidhalhaouari479/gsm-guide-academy',
+        liveUrl: 'https://academy.gsm-guide.com',
+    },
+    {
+        title: '📊 ERP School Dashboard',
+        description: 'A high-performance ERP system dashboard for schools, developed with Next.js and Supabase. Provides administrators with real-time analytics, financial reporting, and student performance metrics with a premium user interface.',
+        technologies: ['Next.js', 'Supabase', 'Tailwind CSS', 'Chart.js'],
+        client: 'Private School (Ecole)',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/x63Wg-75ZBE',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+        githubUrl: 'https://github.com/nidhalhaouari479/erp-school-dashboard',
+        liveUrl: 'https://erp-school.vercel.app',
+    },
+    {
         title: '✨ Glow-Bio-Builder Platform',
         description: 'A web application developed in 2026 for building personalized bios and profiles. Built with Next.js and Supabase, the platform features fast real-time interactions, user authentication, and smooth UI flows.',
         technologies: ['Next.js', 'Supabase'],
@@ -191,6 +217,7 @@ const projects: Project[] = [
 export default function Projects() {
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     const mainProjects = projects.slice(0, 6);
     const otherProjects = projects.slice(6);
@@ -218,7 +245,12 @@ export default function Projects() {
                 {/* Featured Projects Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {mainProjects.map((project, index) => (
-                        <ProjectCard key={index} project={project} index={index} />
+                        <ProjectCard 
+                            key={index} 
+                            project={project} 
+                            index={index} 
+                            onClick={() => setSelectedProject(project)}
+                        />
                     ))}
                 </div>
 
@@ -235,12 +267,19 @@ export default function Projects() {
                     </motion.button>
                 </div>
 
-                {/* Modal for Other Projects */}
+                {/* Modals */}
                 <AnimatePresence>
                     {isModalOpen && (
                         <OtherProjectsModal
                             projects={otherProjects}
                             onClose={() => setIsModalOpen(false)}
+                            onProjectClick={(p) => setSelectedProject(p)}
+                        />
+                    )}
+                    {selectedProject && (
+                        <ProjectDetailModal
+                            project={selectedProject}
+                            onClose={() => setSelectedProject(null)}
                         />
                     )}
                 </AnimatePresence>
@@ -249,7 +288,119 @@ export default function Projects() {
     );
 }
 
-function OtherProjectsModal({ projects, onClose }: { projects: Project[], onClose: () => void }) {
+function ProjectDetailModal({ project, onClose }: { project: Project, onClose: () => void }) {
+    const { t } = useTranslation();
+    const videoId = project.mediaUrl?.includes('youtu.be/')
+        ? project.mediaUrl.split('youtu.be/')[1]
+        : project.mediaUrl?.includes('v=')
+            ? project.mediaUrl.split('v=')[1]?.split('&')[0]
+            : '';
+
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8 bg-slate-950/95 backdrop-blur-2xl"
+        >
+            <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative w-full max-w-5xl bg-slate-900 rounded-[40px] border border-white/10 overflow-hidden shadow-2xl flex flex-col max-h-[90vh]"
+            >
+                <button
+                    onClick={onClose}
+                    className="absolute top-6 right-6 z-50 p-3 rounded-2xl bg-black/50 hover:bg-black/80 text-white transition-colors border border-white/10"
+                >
+                    <X size={24} />
+                </button>
+
+                <div className="overflow-y-auto custom-scrollbar">
+                    <div className="relative aspect-video bg-black">
+                        {project.mediaType === 'video' && videoId ? (
+                            <iframe
+                                className="w-full h-full"
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0&showinfo=0`}
+                                title={project.title}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        ) : (
+                            <img
+                                src={project.mediaUrl}
+                                alt={project.title}
+                                className="w-full h-full object-contain"
+                            />
+                        )}
+                    </div>
+
+                    <div className="p-8 md:p-12 space-y-8">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">{project.title}</h2>
+                                <div className="flex flex-wrap items-center gap-6 text-slate-400">
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+                                            <User size={18} />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">{t('projects.client')}</p>
+                                            <p className="text-sm font-bold text-slate-200">{project.client}</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
+                                            <Calendar size={18} />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">{t('projects.year')}</p>
+                                            <p className="text-sm font-bold text-slate-200">{project.date}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                {project.liveUrl && (
+                                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black text-sm transition-all shadow-lg shadow-indigo-600/20">
+                                        Visit Site <ExternalLink size={18} />
+                                    </a>
+                                )}
+                                {project.githubUrl && (
+                                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all">
+                                        <Github size={24} />
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="h-px bg-white/5"></div>
+
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-bold text-white uppercase tracking-widest">{t('nav.about')} Project</h3>
+                            <p className="text-slate-400 text-lg leading-relaxed font-light">
+                                {project.description}
+                            </p>
+                        </div>
+
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-bold text-white uppercase tracking-widest">Technologies</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {project.technologies.map((tech) => (
+                                    <span key={tech} className="px-5 py-2.5 rounded-xl bg-indigo-500/5 border border-indigo-500/10 text-indigo-300 text-xs font-bold uppercase tracking-widest">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
+    );
+}
+
+function OtherProjectsModal({ projects, onClose, onProjectClick }: { projects: Project[], onClose: () => void, onProjectClick: (p: Project) => void }) {
     const { t } = useTranslation();
 
     return (
@@ -287,7 +438,14 @@ function OtherProjectsModal({ projects, onClose }: { projects: Project[], onClos
                 <div className="flex-1 overflow-y-auto p-8 md:p-12 custom-scrollbar">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {projects.map((project, index) => (
-                            <ProjectCard key={index} project={project} index={index + 6} />
+                            <ProjectCard 
+                                key={index} 
+                                project={project} 
+                                index={index + 6} 
+                                onClick={() => {
+                                    onProjectClick(project);
+                                }}
+                            />
                         ))}
                     </div>
                 </div>
@@ -296,7 +454,8 @@ function OtherProjectsModal({ projects, onClose }: { projects: Project[], onClos
     );
 }
 
-function ProjectCard({ project, index }: { project: Project, index: number }) {
+function ProjectCard({ project, index, onClick }: { project: Project, index: number, onClick: () => void }) {
+    const { t } = useTranslation();
 
     // Extract video ID if it's a YouTube URL
     const videoId = project.mediaUrl?.includes('youtu.be/')
@@ -311,7 +470,8 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="group relative flex flex-col h-full bg-slate-900/50 rounded-[32px] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10"
+            onClick={onClick}
+            className="group relative flex flex-col h-full bg-slate-900/50 rounded-[32px] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 cursor-pointer"
         >
             {/* Media Section */}
             <div className="relative aspect-[4/3] overflow-hidden bg-slate-800">
@@ -384,12 +544,24 @@ function ProjectCard({ project, index }: { project: Project, index: number }) {
 
                     <div className="flex items-center gap-4">
                         {project.liveUrl && (
-                            <a href={project.liveUrl} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold transition-all border border-white/5">
+                            <a 
+                                href={project.liveUrl} 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold transition-all border border-white/5"
+                            >
                                 Visit Site <ExternalLink size={14} />
                             </a>
                         )}
                         {project.githubUrl && (
-                            <a href={project.githubUrl} className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 text-white transition-all border border-white/5">
+                            <a 
+                                href={project.githubUrl} 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-white/10 text-white transition-all border border-white/5"
+                            >
                                 <Github size={20} />
                             </a>
                         )}
