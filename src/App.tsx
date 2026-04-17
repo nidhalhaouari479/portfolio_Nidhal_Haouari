@@ -9,6 +9,7 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AIAssistant from './components/AIAssistant'
+import Clients from './components/Clients'
 
 function App() {
   const { i18n } = useTranslation();
@@ -26,7 +27,9 @@ function App() {
         <Hero />
         <About />
         <Projects />
+        <Clients />
         <Services />
+
         <Certifications />
         <Contact />
       </main>

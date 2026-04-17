@@ -45,7 +45,7 @@ export default function About() {
                                 <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">Years Experience</p>
                             </div>
                             <div className="space-y-2">
-                                <h4 className="text-4xl font-black text-white">15+</h4>
+                                <h4 className="text-4xl font-black text-white">20+</h4>
                                 <p className="text-slate-500 uppercase tracking-widest text-xs font-bold">Projects Done</p>
                             </div>
                             <div className="space-y-2">

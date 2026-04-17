@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Calendar, User, ArrowRight, X } from 'lucide-react';
+import { ExternalLink, Github, Calendar, User, ArrowRight, X, Lock, Ban, Clock } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -19,6 +19,42 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: '🎬 Website for Production Company',
+        description: 'A premium portfolio and production showcase website built for Son of Bear to highlight cinematic projects.',
+        technologies: ['Next.js', 'Supabase', 'Vercel'],
+        client: 'Son of Bear',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/9ezaButu8UU',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=800',
+        liveUrl: 'https://adem-lajili-cinema.vercel.app/',
+    },
+    {
+        title: '🤾‍♂️ Website for Handball Player',
+        description: 'Personal branding and professional portfolio website created for Handball player Skander Slim.',
+        technologies: ['Next.js', 'Supabase', 'Vercel'],
+        client: 'Skander Slim',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'video',
+        mediaUrl: 'https://youtu.be/yoRN_Q9cU0Q',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&q=80&w=800',
+        liveUrl: 'https://skanderslim.vercel.app/',
+    },
+    {
+        title: '🛍️ KARMINDO E-Commerce',
+        description: 'Professional E-commerce platform developed for KARMINDO.',
+        technologies: ['WooCommerce'],
+        client: 'KARMINDO',
+        date: '2026',
+        type: 'freelance',
+        mediaType: 'image',
+        mediaUrl: '',
+        thumbnailUrl: '',
+        liveUrl: 'processing',
+    },
+    {
         title: '🎓 GSM Guide Academy',
         description: 'A comprehensive educational management platform built with Next.js and Supabase. Features include course management, student enrollment tracking, and an automated email notification system using Nodemailer.',
         technologies: ['Next.js', 'Supabase', 'Nodemailer', 'Tailwind CSS'],
@@ -29,7 +65,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/o1QoxKDEMT0',
         thumbnailUrl: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/nidhalhaouari479/gsm-guide-academy',
-        liveUrl: 'https://academy.gsm-guide.com',
+        liveUrl: 'https://www.gsm-guide-academy.tn/',
     },
     {
         title: '📊 ERP School Dashboard',
@@ -42,7 +78,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/x63Wg-75ZBE',
         thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/nidhalhaouari479/erp-school-dashboard',
-        liveUrl: 'https://erp-school.vercel.app',
+        liveUrl: 'private',
     },
     {
         title: '✨ Glow-Bio-Builder Platform',
@@ -55,7 +91,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/76D2xfHtiR0',
         thumbnailUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/nidhalhaouari479/Glow-Bio-Builder',
-        liveUrl: 'https://glow-bio-builder.vercel.app',
+        liveUrl: 'https://glow-bio-builder-asnk.vercel.app/',
     },
     {
         title: '📱 GSM Guide Platform',
@@ -68,7 +104,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/CJMLoTGz6C0',
         thumbnailUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/gsm-guide',
-        liveUrl: 'https://gsm-guide.example.com',
+        liveUrl: 'https://shop.gsm-guide.tn/',
     },
     {
         title: '💻 Platform for DWE Creation',
@@ -81,7 +117,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/JONcHnlt8EE',
         thumbnailUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/dwe-creation',
-        liveUrl: 'https://dwecreation.com',
+        liveUrl: 'https://www.dwecreation.tn/',
     },
     {
         title: '⚽ Intelligent Football Analysis System with AI',
@@ -94,7 +130,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/kH5mNPT8F2k',
         thumbnailUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/football-analysis',
-        liveUrl: 'https://football-ai.example.com',
+        liveUrl: 'https://www.linkedin.com/posts/nidhal-haouari-b1801124b_ai-computervision-machinelearning-ugcPost-7393659681296187392-fh0T?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD3CjgQB-YMC9sv56UGQL4_ekimRUtfamME',
     },
     {
         title: '🏗️ Website for Jomana Travaux',
@@ -107,7 +143,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/lVmIu-pFxLc',
         thumbnailUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/jomana-travaux',
-        liveUrl: 'https://jomanatravaux.com',
+        liveUrl: 'https://jomanatravaux.vercel.app/',
     },
     {
         title: '🌐 Website for Tuniscaling Agency',
@@ -120,7 +156,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/npw9SSwaV-0',
         thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/tuniscaling',
-        liveUrl: 'https://tuniscaling.com',
+        liveUrl: 'https://www.tuniscaling.com/',
     },
     {
         title: '🤖 AI Assistant for Izoguern',
@@ -133,7 +169,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/e4VmV3wNbpg',
         thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/izoguern-ai',
-        liveUrl: 'https://ai.izoguern.com',
+        liveUrl: 'https://izoguern.com/',
     },
     {
         title: '🛒 E-commerce Platform for Izoguern',
@@ -146,7 +182,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/qCGgZe33gpk',
         thumbnailUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/izoguern-shop',
-        liveUrl: 'https://izoguern.com',
+        liveUrl: 'https://izoguern.com/',
     },
     {
         title: '✈️ Travel Agency Website',
@@ -159,7 +195,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/7BSF-poCYBM',
         thumbnailUrl: 'https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/travel-agency',
-        liveUrl: 'https://travel-agency.example.com',
+        liveUrl: 'unavailable',
     },
     {
         title: '📊 Dashboard Platform for Izoguern',
@@ -172,7 +208,7 @@ const projects: Project[] = [
         mediaUrl: 'https://youtu.be/E_rFX8ueyOM',
         thumbnailUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/izoguern-dashboard',
-        liveUrl: 'https://dashboard.izoguern.com',
+        liveUrl: 'private',
     },
     {
         title: '🛍️ E-commerce Platform for Brand Sword',
@@ -184,7 +220,7 @@ const projects: Project[] = [
         mediaType: 'image',
         mediaUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/brand-sword',
-        liveUrl: 'https://brandsword.example.com',
+        liveUrl: 'https://www.swordclo.com',
     },
     {
         title: '🏆 Fantasy Tunisia League',
@@ -197,7 +233,7 @@ const projects: Project[] = [
         mediaUrl: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800',
         thumbnailUrl: 'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/fantasy-tunisia',
-        liveUrl: 'https://fantasy.tunisia.example.com',
+        liveUrl: 'private',
     },
     {
         title: '🚀 My Digital',
@@ -210,7 +246,7 @@ const projects: Project[] = [
         mediaUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
         thumbnailUrl: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=800',
         githubUrl: 'https://github.com/example/my-digital',
-        liveUrl: 'https://mydigital.example.com',
+        liveUrl: 'processing',
     },
 ];
 
@@ -317,7 +353,7 @@ function ProjectDetailModal({ project, onClose }: { project: Project, onClose: (
                 </button>
 
                 <div className="overflow-y-auto custom-scrollbar">
-                    <div className="relative aspect-video bg-black">
+                    <div className="relative aspect-video bg-black flex items-center justify-center">
                         {project.mediaType === 'video' && videoId ? (
                             <iframe
                                 className="w-full h-full"
@@ -326,12 +362,17 @@ function ProjectDetailModal({ project, onClose }: { project: Project, onClose: (
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
                             ></iframe>
-                        ) : (
+                        ) : project.mediaUrl ? (
                             <img
                                 src={project.mediaUrl}
                                 alt={project.title}
                                 className="w-full h-full object-contain"
                             />
+                        ) : (
+                            <div className="flex flex-col items-center justify-center text-slate-500 opacity-60 h-full w-full">
+                                <Clock size={64} className="mb-4 text-indigo-500/50" />
+                                <span className="font-bold uppercase tracking-widest text-lg">En cours de traitement...</span>
+                            </div>
                         )}
                     </div>
 
@@ -361,10 +402,25 @@ function ProjectDetailModal({ project, onClose }: { project: Project, onClose: (
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
-                                {project.liveUrl && (
+                                {project.liveUrl && !['private', 'unavailable', 'processing'].includes(project.liveUrl) && (
                                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black text-sm transition-all shadow-lg shadow-indigo-600/20">
                                         Visit Site <ExternalLink size={18} />
                                     </a>
+                                )}
+                                {project.liveUrl === 'private' && (
+                                    <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/5 text-slate-400 font-black text-sm transition-all border border-white/5 cursor-not-allowed">
+                                        Private <Lock size={18} />
+                                    </div>
+                                )}
+                                {project.liveUrl === 'unavailable' && (
+                                    <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/5 text-slate-400 font-black text-sm transition-all border border-white/5 cursor-not-allowed">
+                                        Unavailable <Ban size={18} />
+                                    </div>
+                                )}
+                                {project.liveUrl === 'processing' && (
+                                    <div className="flex items-center gap-3 px-8 py-4 rounded-2xl bg-amber-500/10 text-amber-500 font-black text-sm transition-all border border-amber-500/20 cursor-not-allowed">
+                                        In Progress <Clock size={18} />
+                                    </div>
                                 )}
                                 {project.githubUrl && (
                                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="p-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all">
@@ -473,7 +529,7 @@ function ProjectCard({ project, index, onClick }: { project: Project, index: num
             className="group relative flex flex-col h-full bg-slate-900/50 rounded-[32px] overflow-hidden border border-white/5 hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10 cursor-pointer"
         >
             {/* Media Section */}
-            <div className="relative aspect-[4/3] overflow-hidden bg-slate-800">
+            <div className="relative aspect-[4/3] overflow-hidden bg-slate-800 flex items-center justify-center">
                 {project.mediaType === 'video' && videoId ? (
                     <div className="relative w-full h-full">
                         <iframe
@@ -486,12 +542,17 @@ function ProjectCard({ project, index, onClick }: { project: Project, index: num
                         {/* Interactive blocker to allow card hover/click instead of iframe interaction */}
                         <div className="absolute inset-0 z-10"></div>
                     </div>
-                ) : (
+                ) : project.mediaUrl ? (
                     <img
                         src={project.mediaUrl}
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
+                ) : (
+                    <div className="flex flex-col items-center justify-center text-slate-500 opacity-60 w-full h-full bg-slate-900">
+                        <Clock size={48} className="mb-4 text-indigo-500/30" />
+                        <span className="font-bold uppercase tracking-[0.2em] text-xs">En cours de vidéo...</span>
+                    </div>
                 )}
 
                 {/* Overlay Text */}
@@ -542,7 +603,7 @@ function ProjectCard({ project, index, onClick }: { project: Project, index: num
                     </div>
 
                     <div className="flex items-center gap-4">
-                        {project.liveUrl && (
+                        {project.liveUrl && !['private', 'unavailable', 'processing'].includes(project.liveUrl) && (
                             <a 
                                 href={project.liveUrl} 
                                 target="_blank"
@@ -552,6 +613,21 @@ function ProjectCard({ project, index, onClick }: { project: Project, index: num
                             >
                                 Visit Site <ExternalLink size={14} />
                             </a>
+                        )}
+                        {project.liveUrl === 'private' && (
+                            <div className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 text-slate-400 text-xs font-bold transition-all border border-white/5 cursor-not-allowed">
+                                Private <Lock size={14} />
+                            </div>
+                        )}
+                        {project.liveUrl === 'unavailable' && (
+                            <div className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 text-slate-400 text-xs font-bold transition-all border border-white/5 cursor-not-allowed">
+                                Unavailable <Ban size={14} />
+                            </div>
+                        )}
+                        {project.liveUrl === 'processing' && (
+                            <div className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-amber-500/10 text-amber-500 text-xs font-bold transition-all border border-amber-500/20 cursor-not-allowed">
+                                In Progress <Clock size={14} />
+                            </div>
                         )}
                         {project.githubUrl && (
                             <a 
